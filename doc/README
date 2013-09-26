@@ -1,0 +1,7 @@
+ElfHunter's documentation diractory
+===================================
+
+You can generate the ElfHunter source documentation with doxygen.
+
+The simplest way to generate it is running the generate.sh bash script.
+(A sample configuration file is provided.)

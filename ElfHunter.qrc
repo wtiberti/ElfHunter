@@ -1,0 +1,21 @@
+<RCC>
+  <qresource>
+    <file>imgs/icona.png</file>
+    <file>icons/run-build.png</file>
+    <file>icons/list-add.png</file>
+    <file>icons/document-edit.png</file>
+    <file>icons/code-block.png</file>
+    <file>icons/configure.png</file>
+    <file>icons/document-save-as.png</file>
+    <file>icons/document-save.png</file>
+    <file>imgs/banner.png</file>
+    <file>icons/application-exit.png</file>
+    <file>icons/arrow-right-double.png</file>
+    <file>icons/document-close.png</file>
+    <file>icons/document-open.png</file>
+    <file>icons/help-about.png</file>
+    <file>icons/view-expenses-categories.png</file>
+    <file>icons/view-list-tree.png</file>
+    <file>icons/view-refresh.png</file>
+  </qresource>
+</RCC>

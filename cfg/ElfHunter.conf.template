@@ -1,0 +1,13 @@
+<!--
+** ElfHunter configuration file **
+-->
+<!DOCTYPE ElfHunterConfiguration>
+<ElfHunter>
+	<ExecModules>
+		<mod cmd="objdump" appendfile="1"/>
+		<mod cmd="readelf" appendfile="1"/>
+		<mod cmd="strings" appendfile="1"/>
+		<mod cmd="hexdump" appendfile="1"/>
+		<mod cmd="ndisasm" appendfile="1"/>
+	</ExecModules>
+</ElfHunter>

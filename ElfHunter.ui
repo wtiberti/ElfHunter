@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EH_MainWindow</class>
+ <widget class="QMainWindow" name="EH_MainWindow">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+<<<<<<< HEAD
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+=======
+>>>>>>> 50ab7cdea86c11b479220bd47c786af71240271f
+  <property name="windowTitle">
+   <string>ElfHunter</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ElfHunter.qrc">
+    <normaloff>:/imgs/icona.png</normaloff>:/imgs/icona.png</iconset>
+  </property>
+<<<<<<< HEAD
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="animated">
+   <bool>false</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
+=======
+  <property name="animated">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+>>>>>>> 50ab7cdea86c11b479220bd47c786af71240271f
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionReload"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_as"/>
+    <addaction name="actionClose"/>
+    <addaction name="actionClose_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionPatchlist"/>
+    <addaction name="actionFunction_List"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="actionPlugins"/>
+    <addaction name="actionOptions"/>
+   </widget>
+   <widget class="QMenu" name="menuFunctions">
+    <property name="title">
+     <string>&amp;Functions</string>
+    </property>
+    <widget class="QMenu" name="menuPatch">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Patches</string>
+     </property>
+     <widget class="QMenu" name="menuGenerate_Code">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="title">
+       <string>Generate Code</string>
+      </property>
+      <addaction name="actionPython"/>
+      <addaction name="actionBash"/>
+      <addaction name="actionC_C"/>
+     </widget>
+     <addaction name="menuGenerate_Code"/>
+    </widget>
+    <widget class="QMenu" name="menuAdd_to_ELF">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Add to ELF...</string>
+     </property>
+     <addaction name="actionSection"/>
+     <addaction name="actionSegment"/>
+    </widget>
+    <widget class="QMenu" name="menuReport">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Report...</string>
+     </property>
+     <addaction name="actionTo_TXT"/>
+     <addaction name="actionTo_HTML"/>
+    </widget>
+    <addaction name="actionDiff_files"/>
+    <addaction name="menuPatch"/>
+    <addaction name="menuAdd_to_ELF"/>
+    <addaction name="menuReport"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>&amp;?</string>
+    </property>
+    <addaction name="actionABI_docs"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_View"/>
+   <addaction name="menuFunctions"/>
+   <addaction name="menuTools"/>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionReload"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSave_as"/>
+   <addaction name="actionClose"/>
+   <addaction name="separator"/>
+   <addaction name="actionFunction_List"/>
+   <addaction name="actionPatchlist"/>
+   <addaction name="separator"/>
+   <addaction name="actionOptions"/>
+   <addaction name="actionAbout"/>
+  </widget>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/document-open.png</normaloff>:/icons/document-open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a File</string>
+   </property>
+   <property name="statusTip">
+    <string/>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/application-exit.png</normaloff>:/icons/application-exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/document-close.png</normaloff>:/icons/document-close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Close All</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/document-save.png</normaloff>:/icons/document-save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSave_as">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/document-save-as.png</normaloff>:/icons/document-save-as.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save as..</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/help-about.png</normaloff>:/icons/help-about.png</iconset>
+   </property>
+   <property name="text">
+    <string>About ElfHunter...</string>
+   </property>
+  </action>
+  <action name="actionPatchlist">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/document-edit.png</normaloff>:/icons/document-edit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Patch list</string>
+   </property>
+  </action>
+  <action name="actionFunction_List">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/code-block.png</normaloff>:/icons/code-block.png</iconset>
+   </property>
+   <property name="text">
+    <string>Function list</string>
+   </property>
+  </action>
+  <action name="actionDiff_files">
+   <property name="text">
+    <string>Diff files..</string>
+   </property>
+  </action>
+  <action name="actionPython">
+   <property name="text">
+    <string>Python...</string>
+   </property>
+  </action>
+  <action name="actionBash">
+   <property name="text">
+    <string>Bash...</string>
+   </property>
+  </action>
+  <action name="actionC_C">
+   <property name="text">
+    <string>C/C++</string>
+   </property>
+  </action>
+  <action name="actionSection">
+   <property name="text">
+    <string>Section...</string>
+   </property>
+  </action>
+  <action name="actionSegment">
+   <property name="text">
+    <string>Segment...</string>
+   </property>
+  </action>
+  <action name="actionPlugins">
+   <property name="text">
+    <string>Plugins...</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/configure.png</normaloff>:/icons/configure.png</iconset>
+   </property>
+   <property name="text">
+    <string>Options</string>
+   </property>
+  </action>
+  <action name="actionTo_TXT">
+   <property name="text">
+    <string>To TXT...</string>
+   </property>
+  </action>
+  <action name="actionTo_HTML">
+   <property name="text">
+    <string>To HTML...</string>
+   </property>
+  </action>
+  <action name="actionABI_docs">
+   <property name="text">
+    <string>ABI docs...</string>
+   </property>
+  </action>
+  <action name="actionReload">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="ElfHunter.qrc">
+     <normaloff>:/icons/view-refresh.png</normaloff>:/icons/view-refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="ElfHunter.qrc"/>
+ </resources>
+ <connections/>
+</ui>

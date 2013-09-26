@@ -1,0 +1,48 @@
+###############################################################################
+#                         ElfHunter INSTALLATION                              #
+###############################################################################
+#  Author: Walter Tiberti <wtuniv@gmail.com>                                  #
+#  Last update: 2013-09-19 10:27 CEST                                         #
+###############################################################################
+
+----- Generate documentation -------------------
+Assuming that Doxygen is installed on your system, to generate documentation
+for the source code, the only thing you need to do is (from the ./doc dir):
+
+	$ doxygen
+
+
+----- Compiling from source code: --------------
+
+	$ qmake
+	$ make all
+
+
+----- Compiling faster: ------------------------
+ If you have a multi-processor/multi-core processor, you should use:
+
+	$ qmake
+	$ make -jn
+
+ Where 'n' is the number of processing units.
+ Example:
+
+	$ qmake
+	$ make -j4
+
+
+----- Common Problems --------------------------
+
+ ** Cannot locate libokteta **
+	In this case, you can try to change the INCLUDEPATH variable inside
+	the ElfHunter project to point to the right path
+
+
+
+----- Installation -----------------------------
+ After compiling, the ElfHunter binary should be available. If you wish to
+ install it, you can for example (from the source code directory):
+
+	# cp ./ElfHunter /usr/local/bin/
+
+ (You can change /usr/local/bin as you prefer)
