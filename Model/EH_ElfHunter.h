@@ -28,6 +28,14 @@
 #include <vector>
 #include "EH_File.h"
 #include "EH_Config.h"
+
+enum EH_DebugOut_style
+{
+	EHDBG_NOSTYLE,
+	EHDBG_WARNING,
+	EHDBG_ERROR
+};
+
 /** @class EH_ElfHunter
  * @brief Main application object class */
 class EH_ElfHunter
@@ -38,6 +46,8 @@ class EH_ElfHunter
 	public:
 		EH_ElfHunter();
 		~EH_ElfHunter();
+
+		static void DebugOutput( const char *message, EH_DebugOut_style style = EHDBG_NOSTYLE );
 		
 		/** @brief Adds a file to the file list
 		 * @param[in] f @ref EH_File object representing the file to add
@@ -58,6 +68,7 @@ class EH_ElfHunter
 		 * @return The number of @ref EH_File currently in the list */
 		unsigned int GetNumOfFiles();
 		
+
 		EH_Config cfg; ///< ElfHunter configuration object
 };
 

@@ -59,7 +59,7 @@ EH_FileView::~EH_FileView()
 
 int EH_FileView::SetFile( EH_File *f )
 {
-	ui_fileview.comboLabel->setText( QString( "File: " ) + f->GetShortName().c_str() );
+	ui_fileview.comboLabel->setText( QString( "File: " ) + f->GetFileName().c_str() );
 	
 	ui_fileview.size_label->setText( QString::number( f->GetFileSize() ) + " bytes" );
 

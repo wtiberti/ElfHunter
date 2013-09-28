@@ -28,6 +28,7 @@
 #include "../View/EH_FileView.h"
 #include "../Model/EH_File.h"
 
+#include "../Model/EH_ElfHunter.h"
 #include "ElfHunter.h"
 #include <cstdio>
 
@@ -46,7 +47,6 @@ int main( int argc, char *argv[] )
 		
 		switch( next_opt )
 		{
-			//TODO
 			case 'h':
 			case '?':
 				EH_Main_PrintHelp();
@@ -66,7 +66,7 @@ int main( int argc, char *argv[] )
 		}
 		else
 		{
-			fprintf( stderr, "\x1b[0;91m[ElfHunter]: %s NOT FOUND!\x1b[0;0m\n", temp->GetFileName().c_str() );
+			EH_ElfHunter::DebugOutput( "File not found!", EHDBG_ERROR );
 			delete temp;
 		}
 	}
@@ -90,9 +90,9 @@ int main( int argc, char *argv[] )
 
 void EH_Main_PrintHelp()
 {
-	puts( "\x1b[0;93m[ELFHUNTER]\x1b[0;0m\n"
+	puts( "\x1b[0;92m[ELFHUNTER]\x1b[0;0m\n"
 			"Command line syntax:\n"
-			"\t\x1b[0;96mElfHunter [options] [files...]\x1b[0;0m\n"
+			"\t\x1b[0;93mElfHunter [options] [files...]\x1b[0;0m\n"
 			"Options:\n"
 			" \x1b[0;92m"
 				"-h"

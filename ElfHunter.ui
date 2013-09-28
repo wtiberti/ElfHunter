@@ -13,12 +13,9 @@
     <height>600</height>
    </rect>
   </property>
-<<<<<<< HEAD
   <property name="acceptDrops">
    <bool>true</bool>
   </property>
-=======
->>>>>>> 50ab7cdea86c11b479220bd47c786af71240271f
   <property name="windowTitle">
    <string>ElfHunter</string>
   </property>
@@ -26,7 +23,6 @@
    <iconset resource="ElfHunter.qrc">
     <normaloff>:/imgs/icona.png</normaloff>:/imgs/icona.png</iconset>
   </property>
-<<<<<<< HEAD
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
@@ -49,15 +45,6 @@
       <property name="acceptDrops">
        <bool>false</bool>
       </property>
-=======
-  <property name="animated">
-   <bool>false</bool>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QTabWidget" name="tabWidget">
->>>>>>> 50ab7cdea86c11b479220bd47c786af71240271f
       <property name="tabShape">
        <enum>QTabWidget::Rounded</enum>
       </property>

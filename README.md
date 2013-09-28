@@ -1,4 +1,4 @@
-# ![logo](imgs/banner.png) ElfHunter
+# ![logo](imgs/github_banner.png) ElfHunter
 
 ## Info
 

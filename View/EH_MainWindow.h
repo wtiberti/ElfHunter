@@ -37,14 +37,11 @@ class EH_MainWindow : public QMainWindow
 	private:
 		Ui::EH_MainWindow ui_mainwindow; ///< QT window widget
 		
-<<<<<<< HEAD
 		/** @brief Create a new @ref EH_FileView widget given a file path
 		 * @param[in] filePath Path to the file
 		 * @return true on success, false otherwise */
 		bool CreateViewFromFilePath( QString filePath );
-		
-=======
->>>>>>> 50ab7cdea86c11b479220bd47c786af71240271f
+
 	public:
 		EH_MainWindow( QWidget *parent = NULL );
 
@@ -74,7 +71,6 @@ class EH_MainWindow : public QMainWindow
 		/** React when switching tabs
 		 * @param[in] index Index of the new tab */
 		void on_tabWidget_currentChanged( int index );
-<<<<<<< HEAD
 
 	protected:
 		/** QT drag in event handler */
@@ -82,8 +78,6 @@ class EH_MainWindow : public QMainWindow
 
 		/** QY drop event handle */
 		void dropEvent( QDropEvent *dropEvent );
-=======
->>>>>>> 50ab7cdea86c11b479220bd47c786af71240271f
 };
 
 #endif

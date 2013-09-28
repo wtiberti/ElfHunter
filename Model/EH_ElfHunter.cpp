@@ -70,3 +70,30 @@ unsigned int EH_ElfHunter::GetNumOfFiles()
 {
 	return files.size();
 }
+
+
+void EH_ElfHunter::DebugOutput( const char *message, EH_DebugOut_style style )
+{
+	char finalFormat[] = "\x1b[0;92m[ELFHUNTER]\x1b[0;0m: "
+						 "\x1b%s%s\x1b[0;0m\n";
+	char colorEscapeCode[10];
+
+	// Preventing NULL and strings longer than 100 chars
+	if( message != NULL && strlen( message ) < 100 )
+	{
+		switch( style )
+		{
+			case EHDBG_WARNING:
+				strncpy( colorEscapeCode, "[0;93m", 10 );
+				break;
+			case EHDBG_ERROR:
+				strncpy( colorEscapeCode, "[0;91m", 10 );
+				break;
+			default:
+			case EHDBG_NOSTYLE:
+				strncpy( colorEscapeCode, "[0;0m", 10 );
+				break;
+		}
+		fprintf( stderr, finalFormat, colorEscapeCode, message );
+	}
+}
