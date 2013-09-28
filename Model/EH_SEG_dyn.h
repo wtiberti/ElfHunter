@@ -37,6 +37,22 @@ class EH_SEG_dyn : public EH_Segment
 		uElf_Dynhdr dyn; ///< Raw data pointers
 		unsigned nHeaders; ///< Number of entries
 
+		char *strtab; ///< Pointer to strings data
+		uElf_Sym symtab; ///< Pointer to dynamic symbols data
+
+		/** @brief Gets the adapted value of the DT_STRTAB entry
+		 * @return A char pointer to the begin of string table if any, otherwise NULL */
+		char *RetrieveStringTableFromEntries();
+
+		/** @brief Gets the adapted value of the DT_SYMTAB entry
+		 * @return A pointer to the resulting @ref uElf_Sym structure */
+		uElf_Sym RetrieveSymTableFromEntries();
+
+		/** @brief Gets the n-th entry
+		 * @param[in] index Index of the entry
+		 * @return The Elfxx_Sym pointer to the @ref index entry */
+		uElf_Dynhdr GetEntryAt( unsigned int pos ) const;
+
 	public:
 		EH_SEG_dyn();
 		EH_SEG_dyn( const char *data, uElf_Proghdr u );

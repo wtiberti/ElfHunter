@@ -51,6 +51,9 @@ EH_SEG_dyn::EH_SEG_dyn( const char *data, uElf_Proghdr u )
 		dyn.dyn32 = (Elf32_Dyn *) segment_data;
 
 	nHeaders = (unsigned int) ( is64bit ? hdr.phdr64->p_filesz/sizeof(Elf64_Dyn) : hdr.phdr32->p_filesz/sizeof(Elf32_Dyn) );
+
+	RetrieveStringTableFromEntries();
+	RetrieveSymTableFromEntries();
 }
 
 EH_SEG_dyn::~EH_SEG_dyn()
@@ -79,10 +82,7 @@ QVariant EH_SEG_dyn::data( const QModelIndex &index, int role ) const
 	{
 		if( (unsigned)index.row() < nHeaders )
 		{
-			if( is64bit )
-				current.dyn64 = dyn.dyn64 + (unsigned)index.row();
-			else
-				current.dyn32 = dyn.dyn32 + (unsigned)index.row();
+			current = GetEntryAt( (unsigned)index.row() );
 
 			if( index.column() == 0 )
 			{
@@ -209,8 +209,17 @@ QVariant EH_SEG_dyn::data( const QModelIndex &index, int role ) const
 			}
 			else
 			{
+				EH_off_t tag = is64bit ? current.dyn64->d_tag : current.dyn32->d_tag;
 				value = is64bit ? current.dyn64->d_un.d_val : current.dyn32->d_un.d_val;
-				return "0x" + QString::number( value, 16 );
+
+				if( tag == DT_NEEDED )
+				{
+					return QString( (char*)( strtab + value ) );
+				}
+				else
+				{
+					return "0x" + QString::number( value, 16 );
+				}
 			}
 		}
 	}
@@ -219,10 +228,7 @@ QVariant EH_SEG_dyn::data( const QModelIndex &index, int role ) const
 		{
 			if( (unsigned)(index.row()) < nHeaders )
 			{
-				if( is64bit )
-					current.dyn64 = dyn.dyn64 + index.row();
-				else
-					current.dyn32 = dyn.dyn32 + index.row();
+				current = GetEntryAt( (unsigned)index.row() );
 
 				if( index.column() == 0 )
 					value = is64bit ? current.dyn64->d_tag : current.dyn32->d_tag;
@@ -309,3 +315,76 @@ EH_FieldInfo EH_SEG_dyn::GetFieldInfo( QModelIndex &index ) const
 	}
 	return fi;
 }
+
+uElf_Dynhdr EH_SEG_dyn::GetEntryAt( unsigned int index ) const
+{
+	uElf_Dynhdr result;
+
+	if( is64bit )
+		result.dyn64 = dyn.dyn64 + index;
+	else
+		result.dyn32 = dyn.dyn32 + index;
+
+	return result;
+}
+
+char *EH_SEG_dyn::RetrieveStringTableFromEntries()
+{
+	uElf_Dynhdr current;
+	EH_off_t tag;
+	EH_off_t value;
+
+	strtab = NULL;
+
+	for( unsigned int i=0; i<nHeaders; i++ )
+	{
+		current = GetEntryAt( i );
+
+		tag = is64bit ? current.dyn64->d_tag : current.dyn32->d_tag;
+
+		if( tag == DT_STRTAB )
+		{
+			if( is64bit )
+				value = current.dyn64->d_un.d_val - 0x00400000; //Subtract image offset for x64
+			else
+				value = current.dyn64->d_un.d_val - 0x08040000; //Subtract image offset for x86
+
+			strtab = (char*)( base + value ); // Adding current imagebase
+			break;
+		}
+	}
+	return strtab;
+}
+
+uElf_Sym EH_SEG_dyn::RetrieveSymTableFromEntries()
+{
+	uElf_Dynhdr current;
+	EH_off_t tag;
+	EH_off_t value;
+
+	symtab.sym32 = NULL;
+
+	for( unsigned int i=0; i<nHeaders; i++ )
+	{
+		current = GetEntryAt( i );
+
+		tag = is64bit ? current.dyn64->d_tag : current.dyn32->d_tag;
+
+		if( tag == DT_SYMTAB )
+		{
+			if( is64bit )
+			{
+				value = current.dyn64->d_un.d_val - 0x00400000; //Subtract image offset for x64
+				symtab.sym64 = (Elf64_Sym *)( base + value );
+			}
+			else
+			{
+				value = current.dyn32->d_un.d_val - 0x08040000; //Subtract image offset for x86
+				symtab.sym32 = (Elf32_Sym *)( base + value );
+			}
+			break;
+		}
+	}
+	return symtab;
+}
+
