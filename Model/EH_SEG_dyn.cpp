@@ -344,10 +344,11 @@ char *EH_SEG_dyn::RetrieveStringTableFromEntries()
 
 		if( tag == DT_STRTAB )
 		{
+			//TODO: are image offset values correct?
 			if( is64bit )
 				value = current.dyn64->d_un.d_val - 0x00400000; //Subtract image offset for x64
 			else
-				value = current.dyn64->d_un.d_val - 0x08040000; //Subtract image offset for x86
+				value = current.dyn32->d_un.d_val - 0x08048000; //Subtract image offset for x86
 
 			strtab = (char*)( base + value ); // Adding current imagebase
 			break;
