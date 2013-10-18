@@ -263,6 +263,19 @@ EH_SectionHeader *EH_File::GetSectHeader()
 		return NULL;
 }
 
+int EH_File::GetElfType( const char *data )
+{
+	try
+	{
+		// INFO: the e_type field preserves size and offset in 32 and 64 bits file
+		return ((Elf32_Ehdr*)data)->e_type;
+	}
+	catch(...)
+	{
+		return ET_NONE;
+	}
+}
+
 bool EH_File::CanDelete() const
 {
 	return delete_on_free;

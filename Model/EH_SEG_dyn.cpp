@@ -24,6 +24,7 @@
  */
 
 #include "EH_SEG_dyn.h"
+#include "EH_File.h"
 
 namespace eh_dyn
 {
@@ -333,8 +334,23 @@ char *EH_SEG_dyn::RetrieveStringTableFromEntries()
 	uElf_Dynhdr current;
 	EH_off_t tag;
 	EH_off_t value;
+	EH_off_t imageoffset;
 
 	strtab = NULL;
+
+	switch( EH_File::GetElfType( base ) )
+	{
+		// TODO: where add the ET_RELOC ?
+		case ET_EXEC:
+			if( is64bit )
+				imageoffset = 0x00400000;
+			else
+				imageoffset = 0x08040000;
+			break;
+		default:
+			imageoffset = 0;
+			break;
+	}
 
 	for( unsigned int i=0; i<nHeaders; i++ )
 	{
@@ -344,13 +360,12 @@ char *EH_SEG_dyn::RetrieveStringTableFromEntries()
 
 		if( tag == DT_STRTAB )
 		{
-			//TODO: are image offset values correct?
 			if( is64bit )
-				value = current.dyn64->d_un.d_val - 0x00400000; //Subtract image offset for x64
+				value = current.dyn64->d_un.d_val - imageoffset;
 			else
-				value = current.dyn32->d_un.d_val - 0x08048000; //Subtract image offset for x86
+				value = current.dyn32->d_un.d_val - imageoffset;
 
-			strtab = (char*)( base + value ); // Adding current imagebase
+			strtab = (char*)( base + value ); // Adding current alloc base
 			break;
 		}
 	}

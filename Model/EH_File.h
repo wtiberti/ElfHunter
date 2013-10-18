@@ -133,6 +133,11 @@ class EH_File
 		 * @return The pointer to the @ref EH_SectionHeader of the file */
 		EH_SectionHeader *GetSectHeader();
 
+		/** @brief Retrieve the value of the e_type field
+		 * @param[in] data Pointer to raw data of the Elf file
+		 * @return The value of the e_type field in the ElfXX_Ehdr struct */
+		static int GetElfType( const char *data );
+
 		/** @brief Checks if the object can be free'd on deletion
 		 * @return true if can be free'd, false otherwise */
 		bool CanDelete() const;

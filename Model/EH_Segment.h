@@ -38,6 +38,7 @@ class EH_Segment : public EH_Model
 		bool is64bit; ///< true on 64-bit files
 		char *base; ///< Base data pointer (file start)
 		void *segment_data; ///< Pointer to segment data
+		bool isDynLib; ///< Flag. true if the file is a dynamic library
 	public:
 		EH_Segment();
 		EH_Segment( const char *data, uElf_Proghdr u );

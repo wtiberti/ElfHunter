@@ -45,7 +45,8 @@ EH_Config::EH_Config( const char *conf_filename )
 bool EH_Config::Load( const char *conf_filename )
 {
 	//TODO
-	(void)conf_filename;
+	//(void)conf_filename;
+
 	return false;
 }
 
